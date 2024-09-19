@@ -1,0 +1,72 @@
+.card {
+    border-radius: 8px;
+    max-width: 660px;
+    margin: auto;
+    padding: 0 30px;
+}
+
+.header {
+    border: 1px solid #8E8E8E;
+    border-radius: 8px;
+    padding: 12px;
+    margin-bottom: 30px;
+    box-shadow: 0px 8px 21px -6px #00000040;
+}
+
+.header h1 {
+    margin-bottom: 10px;
+    border-bottom: 1px solid #8E8E8E;
+    padding: 2px;
+}
+
+.header p {
+    color: gray;
+}
+
+.question {
+    border: 1px solid #8E8E8E;
+    border-radius: 8px;
+    padding: 12px;
+    margin-bottom: 20px;
+    box-shadow: 0px 8px 21px -6px #00000040;
+}
+
+.question .question_text {
+    font-size: 12px;
+    font-weight: normal;
+    text-wrap: wrap;
+}
+
+.question textarea[name="answer"] {
+    margin-top: 12px;
+    border: none;
+    outline: none;
+    resize: none;
+    border-bottom: 1px solid #8E8E8E;
+    font-size: 12px;
+}
+
+.question textarea[name="answer"]:focus {
+    border-bottom: 1px solid #F21B3F;
+}
+
+.return_box {
+    margin: 20px 0px;
+}
+
+.return {
+    text-align: center;
+    font-size: 1rem;
+    background-color: #fff;
+    color: #8E8E8E;
+    padding: 5px;
+    border-radius: 8px;
+    text-decoration: none;
+    margin: 0px;
+}
+
+.return:hover {
+    background-color: #8E8E8E;
+    color: #fff;
+    transition: .2s;
+}

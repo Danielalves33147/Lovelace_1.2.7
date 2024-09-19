@@ -1,0 +1,12 @@
+* {
+  margin: 0;
+  padding: 0;
+  text-decoration: none;
+  box-sizing: border-box;
+}
+
+html, body, #root {
+  font-family: 'Inter', sans-serif;
+  height: 100%;
+  /* background: linear-gradient(142.15deg, #FFFFFF 49.5%, #F21B3F 159.81%); */
+}
