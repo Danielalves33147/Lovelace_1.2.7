@@ -1,3 +1,8 @@
+.hidden {
+    display: none;
+  }
+  
+
 .loveLog {
     background:  linear-gradient(269.52deg, #F21B3F -1.77%, #FFD151 95%);
     background-clip: text;
@@ -148,9 +153,8 @@
     align-items: center;
 }
 
-.resultContainer.show {
-    display: flex;
-}
+
+
 
 .foot{
     display: none;
@@ -168,11 +172,25 @@
     flex-direction: column;
     gap: 16px;
     position: relative;
+    border-radius: 16px; /* Torna o modal mais arredondado */
 }
 
-.modal h1 {
-    font-size: 32px;
-    margin-bottom: 32px;
+.modal h1{
+    color: #141115;
+    font-size: 40px;
+}
+
+.modal .scoreTitle {
+    color: #FFFF;
+}
+
+.modal .level {
+    color: #FFFFFF; /* Muda a cor do texto para a mesma cor que o resultado */
+    /* Adicione qualquer outro estilo que você queira aqui */
+}
+
+.modal p {
+    color: #141115;
 }
 
 .scoreContainer {
@@ -258,7 +276,7 @@
     box-shadow: 0px 8px 21px rgba(242, 27, 63, 0.15);
 }
 
-.savePdf:hover {
+.save:hover {
     border: 1px solid #F21B3F;
     background-color: white;
     color: #F21B3F;
@@ -270,9 +288,11 @@
     border: 1px solid #F4F4F4;
 }
 
+
 footer {
     display: flex;
     flex-direction: column;
+    align-items: center;
     gap: 16px;
 
     padding: 48px 32px;
@@ -285,7 +305,9 @@ footer {
     text-align: center;
     color: #141115;
 }
-
+footer p{
+    color: #141115;
+}
 footer p span {
     color: #141115;
     font-weight: 700;

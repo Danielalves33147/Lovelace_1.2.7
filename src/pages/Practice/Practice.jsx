@@ -15,11 +15,29 @@ export default function Practice() {
   const [score, setScore] = useState(0);
   const [rank, setRank] = useState('');
   const timerRef = useRef(null);
+  const inputRef = useRef(null);
+
 
   function saveResult() {
-    const printableArea = document.getElementById("resultContainer").innerHTML;
+    const printableArea = document.getElementById("resultContainer");
 
-    const estilo = `
+    // Verifica se o elemento existe
+    if (!printableArea) {
+        console.error("Element with id 'resultContainer' not found");
+        return;
+    }
+
+    const printableContent = printableArea.innerHTML;
+    
+
+        // Seleciona os botões e oculta-os
+        const saveButton = document.querySelector(`.${styles.save}`);
+        const dontSaveButton = document.querySelector(`.${styles.dontSavePdf}`);
+        
+        saveButton.style.display = 'none';
+        dontSaveButton.style.display = 'none';
+    
+        const estilo = `
         <style>
             * {
                 font-family: 'Noto Sans', sans-serif;
@@ -34,19 +52,20 @@ export default function Practice() {
                 flex-direction: column;
                 gap: 16px;
                 position: relative;
+                text-align: center; /* Adicionado para centralizar o texto */
             }
-            #resultContainer {
+            .resultContainer {
                 width: 100%;
                 font: 25px Calibri;
             }
-            #resultContainer, th, td {
+            .resultContainer, th, td {
                 border: solid 2px #888;
                 border-collapse: collapse;
                 padding: 4px 8px;
                 text-align: center;
             }
-            #save, #dontSavePdf {
-                display: none;
+            .save, .dontSavePdf {
+                display: hidden;
             }
             footer {
                 border-top: 1px solid #141115;
@@ -55,20 +74,19 @@ export default function Practice() {
             footer p span {
                 color: #141115;
                 font-weight: 700;
-
             }
             .paragraphmodal {
-                display: none;
+                display: none; /* Isso esconderá a pergunta sobre salvar o resultado no PDF */
             }
         </style>
     `;
 
     const footer = `
         <footer>
-        <p>Desenvolvido por <span>Daniel de Santana</span>,<span> Marcos Emanuel </span> e <span> Melkysedeke Costa</span>.</p>
-        <span class="divider"></span>
-        <p>Orientado pela <span>Prof. Dr. Lenade Barreto</span>.</p>
-    </footer>
+            <p>Desenvolvido por <span>Daniel de Santana</span>,<span> Marcos Emanuel </span> e <span> Melkysedeke Costa</span>.</p>
+            <span class="divider"></span>
+            <p>Orientado pela <span>Prof. Dr. Lenade Barreto</span>.</p>
+        </footer>
     `;
 
     const pdfWindow = window.open("", "_blank");
@@ -80,18 +98,24 @@ export default function Practice() {
                 ${estilo}
             </head>
             <body>
-                ${printableArea}
+                ${printableContent}
                 ${footer}
             </body>
         </html>
     `);
     pdfWindow.document.close();
     pdfWindow.print();
+
+    if (saveButton) saveButton.style.display = 'inline-block';
+    if (dontSaveButton) dontSaveButton.style.display = 'inline-block';
+
 }
 
-  function dontSavePdf() {
+
+function dontSavePdf() {
     const resContainer = document.getElementById("resultContainer");
-    resContainer.classList.remove("show");
+    resContainer.classList.remove("show"); // Remove a classe 'show' para esconder o modal
+
     Swal.fire({
         title: 'Resultado não salvo!',
         text: 'Você decidiu não salvar o PDF.',
@@ -100,14 +124,16 @@ export default function Practice() {
         confirmButtonText: 'Continuar a atividade',
         cancelButtonText: 'Voltar à página inicial'
     }).then((result) => {
-        if (result.isConfirmed) {
-        // Continuar a atividade
-        window.location.reload(); // Recarregar a página
-        }else{
-            navigate('/tool');
+        if (result) {
+            // Se o usuário quiser continuar, recarregue a página
+            window.location.reload(); // Recarregar a página
+        } else {
+            // Caso contrário, navegue para a página inicial
+            navigate('/Lovelace_1.2.4/tool');
         }
     });
 }
+
 
 
   useEffect(() => {
@@ -159,9 +185,40 @@ export default function Practice() {
     start();
   }
 
+  function ainda_nao(){
+
+    const resContainer = document.getElementById("resultContainer");
+    resContainer.style.display="none";
+
+    Swal.fire({
+      title: 'Estamos trabalhando nisso!',
+      html: 'Por favor, aguarde...',
+      allowOutsideClick: false,
+      didOpen: () => {
+        Swal.showLoading();
+        
+        // Fecha o alerta após 3 segundos (3000 milissegundos)
+        setTimeout(() => {
+          Swal.close();
+          window.location.reload(); // Recarregar a página
+        }, 3000);
+      }
+    });
+    
+    
+    
+  }
+
+  function testShow() {
+    const resultContainer = document.getElementById("resultContainer");
+    resultContainer.classList.toggle("show"); // Alternar a classe para testar
+}
+
   function sendAnswers() {
     stop();
-    const answerContainer = document.getElementById("submitAnswer").value.toLowerCase();
+    const answerContainer = inputRef.current.value.toLowerCase();
+
+    // console.log("Respostas : ",answerContainer);
 
     if (!answerContainer) {
       Swal.fire({
@@ -175,13 +232,20 @@ export default function Practice() {
     }
 
     calc(answerContainer);
+    
     const resultContainer = document.getElementById("resultContainer");
-    if (resultContainer) {
-      resultContainer.classList.add("show");
+
+    if (resultContainer) { 
+      // document.getElementById("resultContainer").classList.add("show");
+      resultContainer.style.display="flex";
+      console.log("Pós Classe Show ",answerContainer);
+    } else {
+      console.log("Respostas chegaram aqui: ",answerContainer);
     }
   }
 
   function calc(answer) {
+    
     const minTime = 75;
     let sec = timer;
     const respostas = [
@@ -224,7 +288,7 @@ export default function Practice() {
       decress = (deCont / 30) * 10;
     }
 
-    const finalScore = acertos - decress;
+    let finalScore = acertos - decress;
     if (finalScore < 0) {
       finalScore = 0; // Define a pontuação mínima como zero
     }
@@ -239,6 +303,8 @@ export default function Practice() {
     } else {
       setRank("Advanced");
     }
+    console.log("PONTUAÇÃO",finalScore);
+    
   }
 
   return (
@@ -253,7 +319,7 @@ export default function Practice() {
         <div className={styles.containerContent}>
           <p>{currentText}</p>
         </div>
-        <input className={styles.submitAnswer} type="text" placeholder="As palavras chave do texto são..." required />
+        <input id="submitAnswer" className={styles.submitAnswer} type="text" ref={inputRef} placeholder="As palavras chave do texto são..." required />
         <div className={styles.answerButtons}>
           <button className={styles.sendAnswer} onClick={sendAnswers}>Enviar resposta</button>
           <button className={styles.changeText} onClick={() => changeText(practiceText)}>Mudar texto</button>
@@ -264,8 +330,8 @@ export default function Practice() {
         <span className={styles.divider}></span>
         <p>Orientado pela <span>Prof. Dr. Lenade Barreto</span>.</p>
       </footer>
-      <section className={styles.resultContainer}>
-        <div className={styles.modal}>
+      <section id="resultContainer" className={`${styles.resultContainer}`}>
+        <div className={styles.modal}> 
           <h1>Resultado</h1>
           <div className={styles.scoreContainer}>
             <h2 className={styles.scoreTitle}><span className={styles.score}>{Math.round(score)}</span>/100</h2>
@@ -277,8 +343,8 @@ export default function Practice() {
       
           <p className={styles.paragraphmodal}>Deseja salvar o resultado em um PDF?</p>
           <div className={styles.resultButtons}>
-            <button className={styles.save} onClick={saveResult}>Quero!</button>
-            <button className={styles.donSavePdf} onClick={dontSavePdf}>Não quero</button>
+            <button className={styles.save} onClick={ainda_nao}>Quero!</button>
+            <button className={styles.dontSavePdf} onClick={dontSavePdf}>Não quero</button>
           </div>
         </div>
       </section>

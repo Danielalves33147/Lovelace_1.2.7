@@ -1,6 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap');
 
-
 *{
     margin: 0;
     padding: 0;
@@ -21,12 +20,6 @@
     height: 100vh; /* Faz com que o body tenha a altura total da viewport */
     overflow: hidden; /* Oculta qualquer conteúdo que transborde */
 }
-
-.toast-custom {
-    overflow: hidden; /* Esconde a barra de rolagem */
-  }
-
-  
 
 .container{
     background-color: #fff;
@@ -50,22 +43,11 @@
     font-size: 12px;
 }
 
-.link {
-    color: #007BFF; /* Defina a cor desejada para o link */
-    text-decoration: underline; /* Adiciona sublinhado ao link */
-    cursor: pointer; /* Muda o cursor para indicar que é clicável */
-}
-
-.link:hover {
-    color: #0056b3; /* Cor ao passar o mouse */
-}
-
-
 .container a{
+    color: #333;
     font-size: 13px;
     text-decoration: none;
     margin: 15px 0 10px;
-    
 }
 
 .container button{
@@ -165,7 +147,6 @@
     height: 40px;
 }
 
-
 .toggle_container{
     position: absolute;
     top: 0;
@@ -236,5 +217,3 @@
 .container.active .toggle_right{
     transform: translateX(200%);
 }
-
-
