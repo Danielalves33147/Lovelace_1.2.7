@@ -114,15 +114,15 @@ export default function Practice() {
 
 function dontSavePdf() {
     const resContainer = document.getElementById("resultContainer");
-    resContainer.classList.remove("show"); // Remove a classe 'show' para esconder o modal
+    resContainer.style.display="none";
 
     Swal.fire({
         title: 'Resultado não salvo!',
         text: 'Você decidiu não salvar o PDF.',
         icon: 'info',
         showCancelButton: true,
-        confirmButtonText: 'Continuar a atividade',
-        cancelButtonText: 'Voltar à página inicial'
+        confirmButtonText: 'Outra Atividade!',
+        cancelButtonText: 'Pagina Inicial!'
     }).then((result) => {
         if (result) {
             // Se o usuário quiser continuar, recarregue a página
