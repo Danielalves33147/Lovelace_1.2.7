@@ -27,7 +27,7 @@ export default function Tool() {
             cancelButtonText: 'Personalizada'
           }).then((result) => {
             if (result.isConfirmed) {
-              navigate('/Lovelace_1.2.4/practice');
+              navigate('/Lovelace/practice');
             } else {
                 Swal.fire({
                     title: 'Iniciando Atividade!',
@@ -43,9 +43,9 @@ export default function Tool() {
                     cancelButtonText: 'Entrar'
                 }).then((result) => {
                 if (result.isConfirmed) {
-                navigate('/Lovelace_1.2.4/createactivity');
+                navigate('/Lovelace/createactivity');
                 } else {
-                navigate('/Lovelace_1.2.4/accesscode');
+                navigate('/Lovelace/accesscode');
                 }
                 })
             }
