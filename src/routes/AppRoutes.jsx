@@ -13,8 +13,8 @@ export function AppRoutes() {
   return (
     <BrowserRouter>
         <Routes>
-          {/* <Route path="/Lovelace_1.2.4" element={<Teste/>} /> PAGINA DE TESTES */}
-          <Route path="/Lovelace/" element={<Login/>} />
+          <Route path="/Lovelace" element={<Teste/>} /> PAGINA DE TESTES
+          {/* <Route path="/Lovelace/" element={<Login/>} /> */}
           {/* <Route path="/Lovelace/register" element={<Register/>} /> O REGISTRO ESTA JUNTO DO LOGIN AGORA */}
           <Route path="/Lovelace/tool" element={<Tool/>} />
           <Route path="/Lovelace/practice" element={<Practice/>} />
