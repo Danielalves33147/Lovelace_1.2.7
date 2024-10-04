@@ -125,7 +125,7 @@ const LoginRegisterComponent = () => {
       sucess_cad();
       clearFields();
       setIsActive(false);
-      navigate('/Lovelace_1.2.4'); 
+      navigate('/Lovelace'); 
     } catch (error) {
       console.error("Erro ao registrar ou salvar no Firestore:", error);
       fail_cad();
@@ -142,7 +142,7 @@ const LoginRegisterComponent = () => {
         const userName = await getUserNameFromFirestore(user.uid);
         console.log("Nome do usuário:", userName); 
         sucess();
-        navigate('/Lovelace_1.2.4/tool');
+        navigate('/Lovelace/tool');
       }
     } catch (error) {
       console.error("Erro ao fazer login:", error);

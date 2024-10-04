@@ -129,7 +129,7 @@ function dontSavePdf() {
             window.location.reload(); // Recarregar a página
         } else {
             // Caso contrário, navegue para a página inicial
-            navigate('/Lovelace_1.2.4/tool');
+            navigate('/Lovelace/tool');
         }
     });
 }

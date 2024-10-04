@@ -29,7 +29,7 @@ function Activity() {
     return (
         <div className={styles.envelope}>
             <div className={styles.return_box}>
-                <Link className={styles.return} to='/Lovelace_1.2.4/tool'>Voltar</Link>
+                <Link className={styles.return} to='/Lovelace/tool'>Voltar</Link>
             </div>
             <div className={styles.card}>
                 <h1>{activity.name}</h1>
