@@ -124,7 +124,7 @@ function dontSavePdf() {
         confirmButtonText: 'Outra Atividade!',
         cancelButtonText: 'Pagina Inicial!'
     }).then((result) => {
-        if (result) {
+        if (result.isConfirmed) {
             // Se o usuário quiser continuar, recarregue a página
             window.location.reload(); // Recarregar a página
         } else {
